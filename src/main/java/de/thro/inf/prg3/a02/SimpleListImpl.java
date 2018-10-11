@@ -1,23 +1,81 @@
 package de.thro.inf.prg3.a02;
 
+import javax.swing.text.html.HTMLDocument;
+import java.util.Iterator;
+
 /**
  * @author Peter Kurfer
  * Created on 10/6/17.
  */
-public class SimpleListImpl implements SimpleList
+public class SimpleListImpl implements SimpleList, Iterable
 {
-	Element head;
+    /**
+     * global variables
+     */
+    static Element head = null;
+    static Element current = null;
 
+    /**
+     * inner class
+     */
+    static class SimpleIteratorImpl implements Iterator
+    {
+        @Override
+        public boolean hasNext()
+        {
+            if(SimpleListImpl.current.getNext().equals(null))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        @Override
+        public Object next()
+        {
+            Object tmp = new Element();
+
+            tmp = SimpleListImpl.current;
+            current = current.getNext();
+
+            return tmp;
+        }
+    }
+
+    /**
+     * inner class
+     * @TODO wofür ist item ?
+     */
     private static class Element
     {
         Object item;
-        Element next;
+        Element next = null;
+
+        Element getNext()
+        {
+            return this.next;
+        }
+
+        public void setNext(Element next) {
+            this.next = next;
+        }
     }
 
+    /**
+     * adds Object on top of list and
+     * moves head pointer to new Object
+     * @param o Object
+     */
     @Override
     public void add(Object o)
     {
+        Object newObject = new Element();
 
+        ((Element) newObject).setNext(head);
+        head = (Element) newObject;
     }
 
     @Override
@@ -29,6 +87,11 @@ public class SimpleListImpl implements SimpleList
     @Override
     public SimpleList filter(SimpleFilter filter)
     {
+        return null;
+    }
+
+    @Override
+    public Iterator iterator() {
         return null;
     }
 }
