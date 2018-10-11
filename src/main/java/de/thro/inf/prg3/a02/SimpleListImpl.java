@@ -12,8 +12,9 @@ public class SimpleListImpl implements SimpleList, Iterable
     /**
      * global variables
      */
-    static Element head = null;
-    static Element current = null;
+    static Element head;
+    static Element current;
+    static int eCounter = 0;
 
     /**
      * inner class
@@ -23,7 +24,7 @@ public class SimpleListImpl implements SimpleList, Iterable
         @Override
         public boolean hasNext()
         {
-            if(SimpleListImpl.current.getNext().equals(null))
+            if(SimpleListImpl.current.getNext() == null)
             {
                 return false;
             }
@@ -92,6 +93,6 @@ public class SimpleListImpl implements SimpleList, Iterable
 
     @Override
     public Iterator iterator() {
-        return null;
+        return new SimpleIteratorImpl();
     }
 }
