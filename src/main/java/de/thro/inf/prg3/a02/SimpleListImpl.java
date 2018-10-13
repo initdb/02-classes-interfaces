@@ -10,26 +10,30 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
 {
     /**
      * global variables
+     * head: pointer to head of list
+     * elementCounter: amount of Elements in list
      */
     static Element head;
     static int elementCounter = 0;
 
     /**
      * inner class
+     * payload: payload
+     * next: pointer to next Element
      */
     private static class Element
     {
-        Object item;
+        Object payload;
         Element next;
 
-        Element(Object item)
+        Element(Object payload)
         {
-            this.item = item;
+            this.payload = payload;
             this.next = null;
         }
 
-        public Object getItem() {
-            return this.item;
+        public Object getPayload() {
+            return this.payload;
         }
 
         Element getNext()
@@ -66,7 +70,7 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
         @Override
         public Object next()
         {
-            Object tmp = current.getItem();
+            Object tmp = current.getPayload();
             current = current.getNext();
             return tmp;
         }

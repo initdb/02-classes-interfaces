@@ -1,6 +1,6 @@
 @startuml
 interface SimpleFilter {
-	+boolean include(Object item)
+	+boolean include(Object payload)
 }
 
 interface Iterable {
@@ -13,14 +13,14 @@ interface Iterator {
 }
 
 interface SimpleList {
-    +void add(Object item)
+    +void add(Object payload)
     +int size()
     +SimpleList filter(SimpleFilter filter)_
 }
 
 class SimpleListImpl implements SimpleList, Iterable {
 	-head : Element
-	+void add(Object item)
+	+void add(Object payload)
     +int size()
     +SimpleList filter(SimpleFilter filter)
 }
@@ -29,7 +29,7 @@ class SimpleListImpl implements SimpleList, Iterable {
 }
 
 -class Element {
-	-item: Object
+	-payload: Object
     -next: Element
 }
 
