@@ -1,20 +1,18 @@
 package de.thro.inf.prg3.a02;
 
-import javax.swing.text.html.HTMLDocument;
 import java.util.Iterator;
 
 /**
  * @author Benedict Schwind
- * Created on 10/6/17.
+ * Created on 11/10/18.
  */
-public class SimpleListImpl implements SimpleList, Iterable
+public class SimpleListImpl implements SimpleList, Iterable<Object>
 {
     /**
      * global variables
      */
     static Element head;
-    static Element current;
-    static int eCounter = 0;
+    static int elementCounter = 0;
 
     /**
      * inner class
@@ -22,7 +20,7 @@ public class SimpleListImpl implements SimpleList, Iterable
     private static class Element
     {
         Object item;
-        Element next = null;
+        Element next;
 
         Element(Object item)
         {
@@ -31,7 +29,7 @@ public class SimpleListImpl implements SimpleList, Iterable
         }
 
         public Object getItem() {
-            return item;
+            return this.item;
         }
 
         Element getNext()
@@ -47,12 +45,15 @@ public class SimpleListImpl implements SimpleList, Iterable
     /**
      * inner class
      */
-    static class SimpleIteratorImpl implements Iterator
+    class SimpleIteratorImpl implements Iterator<Object>
     {
+        //initialising iterator with head of list
+        private Element current = head;
+
         @Override
         public boolean hasNext()
         {
-            if(SimpleListImpl.current.getNext() == null)
+            if(current.getNext() == null)
             {
                 return false;
             }
@@ -86,7 +87,7 @@ public class SimpleListImpl implements SimpleList, Iterable
         }
         else
         {
-            current = head;
+            Element current = head;
 
             while(current.getNext() != null)
             {
@@ -96,13 +97,13 @@ public class SimpleListImpl implements SimpleList, Iterable
             current.setNext(new Element(o));
         }
 
-        eCounter++;
+        elementCounter++;
     }
 
     @Override
     public int size()
     {
-        return eCounter;
+        return elementCounter;
     }
 
     @Override

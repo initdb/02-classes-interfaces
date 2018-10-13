@@ -29,7 +29,7 @@ public class SimpleListTest {
 
 	@Test
 	void testAddElements(){
-		int counter = 0;
+		int counter = 1;
 		for(Object o : testList){
 			counter++;
 		}
