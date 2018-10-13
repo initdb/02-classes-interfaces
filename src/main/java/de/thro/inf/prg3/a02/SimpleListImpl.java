@@ -81,12 +81,19 @@ public class SimpleListImpl implements SimpleList, Iterable
     {
         if(head == null)
         {
-            head = (Element)o;
+            head = new Element(o);
             head.setNext(null);
         }
         else
         {
+            current = head;
 
+            while(current.getNext() != null)
+            {
+                current = current.getNext();
+            }
+
+            current.setNext(new Element(o));
         }
 
         eCounter++;
