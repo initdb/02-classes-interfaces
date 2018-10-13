@@ -37,11 +37,8 @@ public class SimpleListImpl implements SimpleList, Iterable
         @Override
         public Object next()
         {
-            Object tmp = new Element();
-
-            tmp = SimpleListImpl.current;
+            Object tmp = current.getItem();
             current = current.getNext();
-
             return tmp;
         }
     }
@@ -54,6 +51,16 @@ public class SimpleListImpl implements SimpleList, Iterable
     {
         Object item;
         Element next = null;
+
+        Element(Object item)
+        {
+            this.item = item;
+            this.next = null;
+        }
+
+        public Object getItem() {
+            return item;
+        }
 
         Element getNext()
         {
@@ -73,16 +80,23 @@ public class SimpleListImpl implements SimpleList, Iterable
     @Override
     public void add(Object o)
     {
-        Object newObject = new Element();
+        if(head == null)
+        {
+            head = (Element)o;
+            head.setNext(null);
+        }
+        else
+        {
 
-        ((Element) newObject).setNext(head);
-        head = (Element) newObject;
+        }
+
+        eCounter++;
     }
 
     @Override
     public int size()
     {
-        return 0;
+        return eCounter;
     }
 
     @Override
