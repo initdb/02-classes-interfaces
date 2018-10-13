@@ -13,8 +13,8 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
      * head: pointer to head of list
      * elementCounter: amount of Elements in list
      */
-    private static Element head;
-    private static int elementCounter = 0;
+    private Element head;
+    private int elementCounter = 0;
 
     /**
      * inner class
@@ -104,14 +104,29 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
     }
 
     /**
+     * @param item Object to evaluate
+     * @return true if the referenced object should be included.
+     */
+    @Override
+    public boolean include(Object item)
+    {
+        Iterator<Object> iterator = iterator();
+
+        while(iterator.hasNext())
+        {
+            if(iterator.next() == item)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * function to reset the list to original state
      * used int unit test
      */
-    public void deleteList()
-    {
-        head = null;
-        elementCounter = 0;
-    }
 
     @Override
     public int size()
@@ -122,7 +137,14 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
     @Override
     public SimpleList filter(SimpleFilter filter)
     {
-        return null;
+        SimpleList result = new SimpleListImpl();
+
+        for(Object o : this){
+            if(filter.include(o)){
+                result.add(o);
+            }
+        }
+        return result;
     }
 
     @Override
