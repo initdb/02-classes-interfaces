@@ -19,34 +19,6 @@ public class SimpleListImpl implements SimpleList, Iterable
     /**
      * inner class
      */
-    static class SimpleIteratorImpl implements Iterator
-    {
-        @Override
-        public boolean hasNext()
-        {
-            if(SimpleListImpl.current.getNext() == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        @Override
-        public Object next()
-        {
-            Object tmp = current.getItem();
-            current = current.getNext();
-            return tmp;
-        }
-    }
-
-    /**
-     * inner class
-     * @TODO wofür ist item ?
-     */
     private static class Element
     {
         Object item;
@@ -69,6 +41,33 @@ public class SimpleListImpl implements SimpleList, Iterable
 
         public void setNext(Element next) {
             this.next = next;
+        }
+    }
+
+    /**
+     * inner class
+     */
+    static class SimpleIteratorImpl implements Iterator
+    {
+        @Override
+        public boolean hasNext()
+        {
+            if(SimpleListImpl.current.getNext() == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        @Override
+        public Object next()
+        {
+            Object tmp = current.getItem();
+            current = current.getNext();
+            return tmp;
         }
     }
 
