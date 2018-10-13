@@ -4,7 +4,7 @@ import javax.swing.text.html.HTMLDocument;
 import java.util.Iterator;
 
 /**
- * @author Peter Kurfer
+ * @author Benedict Schwind
  * Created on 10/6/17.
  */
 public class SimpleListImpl implements SimpleList, Iterable
