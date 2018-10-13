@@ -79,14 +79,14 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
     /**
      * adds Object on top of list and
      * moves head pointer to new Object
-     * @param o Object
+     * @param object Object
      */
     @Override
-    public void add(Object o)
+    public void add(Object object)
     {
         if(head == null)
         {
-            head = new Element(o);
+            head = new Element(object);
             head.setNext(null);
         }
         else
@@ -98,7 +98,7 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
                 current = current.getNext();
             }
 
-            current.setNext(new Element(o));
+            current.setNext(new Element(object));
         }
 
         elementCounter++;
