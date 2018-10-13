@@ -2,7 +2,7 @@ package de.thro.inf.prg3.a02;
 
 import java.util.Iterator;
 
-public interface SimpleList {
+public interface SimpleList extends SimpleFilter {
 	/**
 	 * Add a given object to the back of the list.
 	 */
