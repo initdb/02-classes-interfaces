@@ -2,6 +2,8 @@ package de.thro.inf.prg3.a02.tests;
 
 import de.thro.inf.prg3.a02.SimpleFilter;
 import de.thro.inf.prg3.a02.SimpleListImpl;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -64,5 +66,11 @@ public class SimpleListTest {
 			int i = (int)o;
 			assertTrue(i % 2 == 0);
 		}
+	}
+
+	@AfterEach
+	void teardown()
+	{
+		testList.deleteList();
 	}
 }

@@ -13,8 +13,8 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
      * head: pointer to head of list
      * elementCounter: amount of Elements in list
      */
-    static Element head;
-    static int elementCounter = 0;
+    private static Element head;
+    private static int elementCounter = 0;
 
     /**
      * inner class
@@ -23,8 +23,8 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
      */
     private static class Element
     {
-        Object payload;
-        Element next;
+        private Object payload;
+        private Element next;
 
         Element(Object payload)
         {
@@ -49,7 +49,7 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
     /**
      * inner class
      */
-    class SimpleIteratorImpl implements Iterator<Object>
+    private class SimpleIteratorImpl implements Iterator<Object>
     {
         //initialising iterator with head of list
         private Element current = head;
@@ -70,9 +70,9 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
         @Override
         public Object next()
         {
-            Object tmp = current.getPayload();
+            Object payload = current.getPayload();
             current = current.getNext();
-            return tmp;
+            return payload;
         }
     }
 
@@ -87,7 +87,6 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
         if(head == null)
         {
             head = new Element(object);
-            head.setNext(null);
         }
         else
         {
@@ -102,6 +101,16 @@ public class SimpleListImpl implements SimpleList, Iterable<Object>
         }
 
         elementCounter++;
+    }
+
+    /**
+     * function to reset the list to original state
+     * used int unit test
+     */
+    public void deleteList()
+    {
+        head = null;
+        elementCounter = 0;
     }
 
     @Override
